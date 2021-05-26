@@ -84,7 +84,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        Materialize
+                                        TBoxScanner
                                     </mainClass>
                                 </manifest>
                             </archive>
