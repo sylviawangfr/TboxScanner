@@ -9,7 +9,10 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import uk.ac.manchester.cs.jfact.JFactFactory;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Stream;
 
 /*
  Script that do TBoxScanner.
@@ -35,42 +38,48 @@ public class TBoxScanner {
         String domainProp = new String();
         String Range = new String();
         String rangeProp = new String();
-        File file1 = new File("PrecomputeTBOX1.txt");
+        File file1 = new File("results/PrecomputeTBOX1.txt");
         FileWriter fw1 = new FileWriter(file1);
         PrintWriter printWriter1 = new PrintWriter(fw1);
-        File file2 = new File("PrecomputeTBOX2.txt");
+        File file2 = new File("results/PrecomputeTBOX2.txt");
         FileWriter fw2 = new FileWriter(file2);
         PrintWriter printWriter2 = new PrintWriter(fw2);
         //PrintWriter 3 menghasilkan file PrecomputeTBOX3 yang bisa digunakan untuk pattern ID 3.
-        File file3 = new File("PrecomputeTBOX3.txt");
+        File file3 = new File("results/PrecomputeTBOX3.txt");
         FileWriter fw3 = new FileWriter(file3);
         PrintWriter printWriter3 = new PrintWriter(fw3);
-        File file4 = new File("PrecomputeTBOX4.txt");
+        File file4 = new File("results/PrecomputeTBOX4.txt");
         FileWriter fw4 = new FileWriter(file4);
         PrintWriter printWriter4 = new PrintWriter(fw4);
-        File file5 = new File("PrecomputeTBOX5.txt");
+        File file5 = new File("results/PrecomputeTBOX5.txt");
         FileWriter fw5 = new FileWriter(file5);
         PrintWriter printWriter5 = new PrintWriter(fw5);
-        File file6 = new File("PrecomputeTBOX6.txt");
+        File file6 = new File("results/PrecomputeTBOX6.txt");
         FileWriter fw6 = new FileWriter(file6);
         PrintWriter printWriter6 = new PrintWriter(fw6);
-        File file7 = new File("PrecomputeTBOX7.txt");
+        File file7 = new File("results/PrecomputeTBOX7.txt");
         FileWriter fw7 = new FileWriter(file7);
         PrintWriter printWriter7 = new PrintWriter(fw7);
-        File file8 = new File("PrecomputeTBOX8.txt");
+        File file8 = new File("results/PrecomputeTBOX8.txt");
         FileWriter fw8 = new FileWriter(file8);
         PrintWriter printWriter8 = new PrintWriter(fw8);
-        File file9 = new File("PrecomputeTBOX9.txt");
+        File file9 = new File("results/PrecomputeTBOX9.txt");
         FileWriter fw9 = new FileWriter(file9);
         PrintWriter printWriter9 = new PrintWriter(fw9);
-        File file10 = new File("PrecomputeTBOX10.txt");
+        File file10 = new File("results/PrecomputeTBOX10.txt");
         FileWriter fw10 = new FileWriter(file10);
         PrintWriter printWriter10 = new PrintWriter(fw10);
-        File file11 = new File("PrecomputeTBOX11.txt");
+        File file11 = new File("results/PrecomputeTBOX11.txt");
         FileWriter fw11 = new FileWriter(file11);
         PrintWriter printWriter11 = new PrintWriter(fw11);
 
         String domainSuper = new String();
+
+        File all_classes = new File("results/AllClasses.txt");
+        FileWriter FW_classes = new FileWriter(all_classes);
+        PrintWriter all_classes_w = new PrintWriter(FW_classes);
+        ont.classesInSignature().forEach(element -> {all_classes_w.print(element.getIRI().getShortForm() + '\n'); });
+        all_classes_w.close();
 
         for(OWLObjectPropertyDomainAxiom doma: ont.getAxioms(AxiomType.OBJECT_PROPERTY_DOMAIN)){
             //Prop = doma.getProperty().getNamedProperty().getIRI().getShortForm();
